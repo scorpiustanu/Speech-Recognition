@@ -24,28 +24,37 @@ const App = () => {
 
   return (
     <>
-      <div className="container">
-        <h2>Speech to Text Converter</h2>
-        <br />
+      {!browserSupportsSpeechRecognition ? (
         <p>
-          A React hook that converts speech from the microphone to text and
-          makes it available to your React components.
+          Sorry, your browser or device does not support speech recognition.
         </p>
+      ) : (
+        <div className="container">
+          <h2>Speech to Text Converter</h2>
+          <br />
+          <p>
+            A React hook that converts speech from the microphone to text and
+            makes it available to your React components.
+          </p>
 
-        <div className="main-content" onClick={() => setTextToCopy(transcript)}>
-          {transcript}
-        </div>
+          <div
+            className="main-content"
+            onTouchStart={() => setTextToCopy(transcript)}
+          >
+            {transcript}
+          </div>
 
-        <div className="btn-style">
-          <button onClick={setCopied}>
-            {isCopied ? "Copied!" : "Copy to clipboard"}
-          </button>
-          <button onClick={startListening}>Start Listening</button>
-          <button onClick={SpeechRecognition.stopListening}>
-            Stop Listening
-          </button>
+          <div className="btn-style">
+            <button onClick={setCopied}>
+              {isCopied ? "Copied!" : "Copy to clipboard"}
+            </button>
+            <button onClick={startListening}>Start Listening</button>
+            <button onClick={SpeechRecognition.stopListening}>
+              Stop Listening
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
