@@ -1,47 +1,4 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-
+/* General Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -57,76 +14,71 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  align-self: center;
+  min-height: 100vh;
   background: rgb(255 255 255);
 }
 
+/* Container Styling */
 .container {
-  padding: 30px;
-  margin-top: 80px;
+  padding: 20px;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 600px;
 }
 
+/* Headings */
 h2 {
   color: rgb(43 45 56);
   text-align: center;
-  font-size: 48px;
+  font-size: 36px;
   letter-spacing: -0.2px;
   font-family: "Merriweather", serif;
 }
 
 p {
-  max-width: 50rem;
+  max-width: 100%;
   text-align: center;
-  margin-top: 24px;
-  margin-bottom: 100px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
+/* Main Content Styling */
 .main-content {
-  max-width: 50rem;
   width: 100%;
-  min-height: 400px;
-  height: auto;
-  padding: 18px 18px 120px 18px;
-  position: relative;
+  min-height: 300px;
+  padding: 18px;
   resize: none;
   box-shadow: 0 12px 48px 0px rgb(109 117 141 / 20%);
   background: rgb(255 255 255);
   border: 0.5px solid rgb(231 233 245);
   border-radius: 16px;
-}
-
-.main-content:focus {
-  border: 0.3px solid rgb(43, 45, 56, 0.3);
-  outline: none;
-}
-
-p,
-.main-content {
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 1px;
   word-spacing: 2px;
   line-height: 1.6;
 }
 
-.btn-style{
+/* Buttons */
+.btn-style {
   display: flex;
-
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 button {
-  /* position: absolute; */
   background: rgb(17 166 131);
   color: rgb(255 255 255);
   border-radius: 6px;
-  padding: 16px 32px;
+  padding: 12px 24px;
   border: none;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 1px;
-  margin: auto;
-  display: flex;
-  position: relative;
-  margin-top: -80px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 button:focus,
@@ -135,15 +87,11 @@ button:hover {
   box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.1);
 }
 
-.counter-container {
-  margin-top: 30px;
-  display: flex;
-  justify-content: space-between;
-}
-
+/* Responsive Adjustments for Smaller Screens */
 @media screen and (max-width: 768px) {
   .container {
     margin-top: 20px;
+    padding: 16px;
   }
 
   h2 {
@@ -151,29 +99,37 @@ button:hover {
   }
 
   p {
-    font-size: 16px;
-    word-spacing: normal;
-    margin-bottom: 40px;
-    margin-top: 15px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-top: 10px;
   }
 
   .main-content {
-    /*border:1px solid*/
-    font-size: 16px;
-    word-spacing: normal;
+    font-size: 14px;
+    padding: 12px;
   }
 
   button {
-    padding: 12px 28px;
-    font-size: 16px;
-    margin-top: -70px;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h2 {
+    font-size: 24px;
   }
 
-  .counter-container {
-    flex-direction: column;
+  p {
+    font-size: 12px;
   }
 
-  .counter-container p:first-child {
-    margin-bottom: 0;
+  .main-content {
+    font-size: 12px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 12px;
   }
 }
