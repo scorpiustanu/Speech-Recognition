@@ -1,55 +1,55 @@
+import React, { useContext } from "react";
 import "./App.css";
-import "regenerator-runtime/runtime";
-
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
-import useClipboard from "react-use-clipboard";
-import { useState } from "react";
-
+import aiImg from "./assets/ai.png";
+import speakImg from "./assets/speak.gif";
+import voiceImg from "./assets/aiVoice.gif";
+import { CiMicrophoneOn } from "react-icons/ci";
+import { datacontext } from "./context/UserContext";
 const App = () => {
-  const [textToCopy, setTextToCopy] = useState();
-  const [isCopied, setCopied] = useClipboard(textToCopy, {
-    successDuration: 1000,
-  });
-
-  //subscribe to thapa technical for more awesome videos
-
-  const startListening = () =>
-    SpeechRecognition.startListening({ continuous: true, language: "en-IN" });
-  const { transcript, browserSupportsSpeechRecognition } =
-    useSpeechRecognition();
-
-  if (!browserSupportsSpeechRecognition) {
-    // return null;
-    console.log("error");
-  }
-
+  const {
+    recognition,
+    speaking,
+    setSpeaking,
+    promptText,
+    setPromptText,
+    responseVoiceImg,
+    setResponseVoiceImg,
+  } = useContext(datacontext);
+  // speak("hello");
   return (
-    <>
-      <div className="container">
-        <h2>Speech to Text Converter</h2>
-        <br />
-        <p>
-          A React hook that converts speech from the microphone to text and
-          makes it available to your React components.
-        </p>
-
-        <div className="main-content" onClick={() => setTextToCopy(transcript)}>
-          {transcript}
-        </div>
-
-        <div className="btn-style">
-          <button onClick={setCopied}>
-            {isCopied ? "Copied!" : "Copy to clipboard"}
-          </button>
-          <button onClick={startListening}>Start Listening</button>
-          <button onClick={SpeechRecognition.stopListening}>
-            Stop Listening
-          </button>
-        </div>
+    <div>
+      <div className="main">
+        <img src={aiImg} alt="" id="shifra" />
+        <span>I'm Shifra, Your Advanced Virtual Assistant </span>
+        <span>
+          {!speaking ? (
+            <>
+              <button
+                onClick={() => {
+                  setPromptText("listening....");
+                  setSpeaking(true);
+                  setResponseVoiceImg(false);
+                  recognition.start();
+                }}
+              >
+                Click to speak
+                <CiMicrophoneOn className="mic" />
+              </button>
+            </>
+          ) : (
+            <div className="response">
+              {!responseVoiceImg ? (
+                <img src={speakImg} id="speak" alt="" />
+              ) : (
+                <img src={voiceImg} id="aivoicespeak" alt="" />
+              )}
+              <p>{promptText}</p>
+            </div>
+          )}
+        </span>
+        {/* <p>{userText}</p> */}
       </div>
-    </>
+    </div>
   );
 };
 
