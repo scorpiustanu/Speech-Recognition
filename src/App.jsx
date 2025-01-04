@@ -23,8 +23,20 @@ const App = () => {
         <span>
           {!speaking ? (
             <>
+              {/* <button
+                onClick={() => {
+                  setPromptText("listening....");
+                  setSpeaking(true);
+                  setResponseVoiceImg(false);
+                  recognition.start();
+                }}
+              >
+                Click to speak
+                <CiMicrophoneOn className="mic" />
+              </button> */}
               <button
                 onClick={() => {
+                  window.speechSynthesis.cancel(); // Stop any ongoing speech
                   setPromptText("listening....");
                   setSpeaking(true);
                   setResponseVoiceImg(false);

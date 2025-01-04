@@ -15,27 +15,67 @@ function UserContext({ children }) {
   //     text_speak.lang = "en-GB";
   //     window.speechSynthesis.speak(text_speak);
   //   };
+  //   const speak = (text) => {
+  //     if (!window.speechSynthesis) {
+  //       console.error("SpeechSynthesis API is not supported in this browser.");
+  //       return;
+  //     }
+  //     window.speechSynthesis.cancel();
+
+  //     let text_speak = new SpeechSynthesisUtterance(text);
+  //     text_speak.volume = 1;
+  //     text_speak.rate = 1;
+  //     text_speak.pitch = 1;
+  //     text_speak.lang = "en-US";
+
+  //     const voices = window.speechSynthesis.getVoices();
+  //     text_speak.voice =
+  //       voices.find((voice) => voice.lang === "en-US") || voices[0];
+
+  //     if (!text_speak.voice) {
+  //       console.error("No suitable voice found for en-GB.");
+  //     }
+
+  //     window.speechSynthesis.speak(text_speak);
+  //   };
   const speak = (text) => {
     if (!window.speechSynthesis) {
       console.error("SpeechSynthesis API is not supported in this browser.");
       return;
     }
+
+    // Stop ongoing speech recognition to avoid conflicts
+    recognition.stop();
+
+    // Cancel any existing speech utterances
     window.speechSynthesis.cancel();
 
-    let text_speak = new SpeechSynthesisUtterance(text);
+    // Create a new utterance
+    const text_speak = new SpeechSynthesisUtterance(text);
     text_speak.volume = 1;
     text_speak.rate = 1;
     text_speak.pitch = 1;
     text_speak.lang = "en-US";
 
+    // Ensure voices are loaded
     const voices = window.speechSynthesis.getVoices();
     text_speak.voice =
       voices.find((voice) => voice.lang === "en-US") || voices[0];
 
     if (!text_speak.voice) {
-      console.error("No suitable voice found for en-GB.");
+      alert("No suitable voice found for en-US.");
+      return;
     }
 
+    // Handle speech synthesis completion
+    text_speak.onend = () => {
+      console.log("Speech synthesis finished.");
+      setTimeout(() => {
+        setSpeaking(false);
+      }, 1000);
+    };
+
+    // Start speaking
     window.speechSynthesis.speak(text_speak);
   };
 
@@ -50,6 +90,31 @@ function UserContext({ children }) {
   };
 
   //airesponse
+  //   const airesponse = async (prompt) => {
+  //     try {
+  //       const text = await run(prompt);
+  //       const newText =
+  //         text.split("**") &&
+  //         text.split("*") &&
+  //         text.replace("google", "Tanu Tiwari") &&
+  //         text.replace("Google", "Tanu Tiwari");
+  //       console.log("AI Response:", text);
+  //       if (newText) {
+  //         recognition.stop();
+  //         setPromptText(newText);
+
+  //         speak(newText);
+  //         setResponseVoiceImg(true);
+  //         setTimeout(() => {
+  //           setSpeaking(false);
+  //         }, 5000);
+  //       } else {
+  //         console.error("Empty response from AI.");
+  //       }
+  //     } catch (err) {
+  //       console.error("Error in airesponse:", err);
+  //     }
+  //   };
   const airesponse = async (prompt) => {
     try {
       const text = await run(prompt);
@@ -58,13 +123,17 @@ function UserContext({ children }) {
         text.split("*") &&
         text.replace("google", "Tanu Tiwari") &&
         text.replace("Google", "Tanu Tiwari");
+
       console.log("AI Response:", text);
       if (newText) {
-        recognition.stop();
+        recognition.stop(); // Stop recognition
         setPromptText(newText);
-
-        speak(newText);
         setResponseVoiceImg(true);
+
+        // Speak the AI response
+        speak(newText);
+
+        // Reset speaking state after a delay
         setTimeout(() => {
           setSpeaking(false);
         }, 5000);
