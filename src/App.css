@@ -29,6 +29,7 @@ span{
   background-clip: text;
   color: transparent;
   text-align: center;
+
 }
 button{
   width: 100%;
@@ -70,6 +71,9 @@ p{
   gap: 20px;
   flex-direction: column;
   flex-wrap: wrap;
+  p{
+    color: white;
+  }
 }
 #aivoicespeak{
   width: 50vh;

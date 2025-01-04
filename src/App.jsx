@@ -15,12 +15,11 @@ const App = () => {
     responseVoiceImg,
     setResponseVoiceImg,
   } = useContext(datacontext);
-  // speak("hello");
   return (
     <div>
       <div className="main">
         <img src={aiImg} alt="" id="shifra" />
-        <span>I'm Shifra, Your Advanced Virtual Assistant </span>
+        <span>I'm Tanu,Your Advanced Virtual Assistant </span>
         <span>
           {!speaking ? (
             <>
