@@ -112,10 +112,6 @@ function UserContext({ children }) {
       }, 5000);
     } else {
       airesponse(command);
-      setResponseVoiceImg(true);
-      setTimeout(() => {
-        setSpeaking(false);
-      }, 5000);
     }
   }
   const value = {
