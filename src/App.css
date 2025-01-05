@@ -1,0 +1,95 @@
+/* General Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+  background-color: white;
+}
+
+.main{
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: start;
+  padding: 10px;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  
+}
+#shifra{
+  height: 70%;
+
+}
+span{
+  font-size: 3vmax;
+  background: linear-gradient(to right,rgb(34, 221, 231),rgb(237,4,125));
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+
+}
+button{
+  width: 100%;
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 20px;
+  padding: 10px 30px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  border: none;
+  background-color: rgb(79,224,234);
+  box-shadow: 2px 2px 100px rgb(79,224,234) ;
+  .mic{
+    background-color: rgb(79,224,234);
+
+  }
+}
+p{
+  color: black;
+  font-size: 10px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+#speak{
+  width: 100px;
+}
+.response{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  p{
+    color: white;
+  }
+}
+#aivoicespeak{
+  width: 50vh;
+  height: 80px;
+}
+textarea{
+  margin-top: 2rem;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  padding: 10px 20px;
+}
+h2{
+  margin: 1rem 0;
+  
+}
