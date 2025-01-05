@@ -4,7 +4,7 @@ import useClipboard from "react-use-clipboard";
 export const datacontext = createContext();
 function UserContext({ children }) {
   let [speaking, setSpeaking] = useState(false);
-  let [promptText, setPromptText] = useState("listening....");
+  let [promptText, setPromptText] = useState("");
   let [responseVoiceImg, setResponseVoiceImg] = useState(false);
   const [isCopied, setCopied] = useClipboard(promptText, {
     successDuration: 1000,
@@ -15,7 +15,6 @@ function UserContext({ children }) {
       return;
     }
 
-    // Stop ongoing speech recognition to avoid conflicts
     recognition.stop();
 
     // Cancel any existing speech utterances
@@ -58,62 +57,6 @@ function UserContext({ children }) {
     const transcript = e.results[resultIndex][0].transcript;
     setPromptText(transcript);
     takeCommand(transcript.toLowerCase());
-  };
-
-  //airesponse
-  //   const airesponse = async (prompt) => {
-  //     try {
-  //       const text = await run(prompt);
-  //       const newText =
-  //         text.split("**") &&
-  //         text.split("*") &&
-  //         text.replace("google", "Tanu Tiwari") &&
-  //         text.replace("Google", "Tanu Tiwari");
-  //       console.log("AI Response:", text);
-  //       if (newText) {
-  //         recognition.stop();
-  //         setPromptText(newText);
-
-  //         speak(newText);
-  //         setResponseVoiceImg(true);
-  //         setTimeout(() => {
-  //           setSpeaking(false);
-  //         }, 5000);
-  //       } else {
-  //         console.error("Empty response from AI.");
-  //       }
-  //     } catch (err) {
-  //       console.error("Error in airesponse:", err);
-  //     }
-  //   };
-  const airesponse = async (prompt) => {
-    try {
-      const text = await run(prompt);
-      const newText =
-        text.split("**") &&
-        text.split("*") &&
-        text.replace("google", "Tanu Tiwari") &&
-        text.replace("Google", "Tanu Tiwari");
-
-      console.log("AI Response:", text);
-      if (newText) {
-        recognition.stop(); // Stop recognition
-        setPromptText(newText);
-        setResponseVoiceImg(true);
-
-        // Speak the AI response
-        speak(newText);
-
-        // Reset speaking state after a delay
-        setTimeout(() => {
-          setSpeaking(false);
-        }, 5000);
-      } else {
-        console.error("Empty response from AI.");
-      }
-    } catch (err) {
-      console.error("Error in airesponse:", err);
-    }
   };
 
   function takeCommand(command) {

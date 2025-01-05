@@ -1,95 +1,161 @@
-/* General Reset and Base Styles */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Work Sans", sans-serif;
-  background-color: white;
 }
 
-.main{
-  height: 100vh;
-  overflow: hidden;
+body {
+  background-color: #f8f8f8;
+  color: #333;
+  font-size: 16px;
+  min-height: 100vh;
   display: flex;
-  justify-content: start;
-  padding: 10px;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
-  flex-wrap: wrap;
-  gap: 10px;
-  
+  overflow: hidden;
 }
-#shifra{
-  height: 70%;
 
+/* Main container */
+.main {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffff, #e4e8e8);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
 }
-span{
-  font-size: 3vmax;
-  background: linear-gradient(to right,rgb(34, 221, 231),rgb(237,4,125));
+
+/* Header */
+h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  z-index: 1;
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Gradient for the title */
+span {
+  font-size: 1.5rem;
+  background: linear-gradient(to right, #8e44ad, #2ecc71);
   background-clip: text;
   color: transparent;
   text-align: center;
-
+  margin-bottom: 20px;
+  z-index: 1;
 }
-button{
-  width: 100%;
+
+/* Button styling */
+button {
   cursor: pointer;
-  height: 40px;
+  font-size: 1.2rem;
+  padding: 15px 30px;
+  border-radius: 50px;
+  border: none;
+  background-color: #27ae60;
+  color: white;
+  box-shadow: 0px 8px 20px rgba(39, 174, 96, 0.4);
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  font-size: 20px;
-  padding: 10px 30px;
-  border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-  border: none;
-  background-color: rgb(79,224,234);
-  box-shadow: 2px 2px 100px rgb(79,224,234) ;
-  .mic{
-    background-color: rgb(79,224,234);
+  gap: 15px;
+  z-index: 1;
+  margin-top: 20px;
+}
 
-  }
+button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 12px 30px rgba(39, 174, 96, 0.5);
 }
-p{
-  color: black;
-  font-size: 10px;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
+
+button:focus {
+  outline: none;
 }
-#speak{
-  width: 100px;
+
+/* Microphone Icon */
+.mic {
+  font-size: 1.8rem;
 }
-.response{
+
+/* Text area for speech-to-text result */
+textarea {
+  margin-top: 20px;
+  padding: 12px 18px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #27ae60;
+  background-color: #ecf6f1;
+  color: #333;
+  font-size: 1.1rem;
+  height: 120px;
+  resize: none;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+textarea:focus {
+  border-color: #8e44ad;
+  outline: none;
+}
+
+/* Response Section */
+.response {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
   flex-direction: column;
   flex-wrap: wrap;
-  p{
-    color: white;
-  }
 }
-#aivoicespeak{
+
+#aivoicespeak {
   width: 50vh;
   height: 80px;
 }
-textarea{
-  margin-top: 2rem;
-  background-color: white;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  padding: 10px 20px;
-}
-h2{
+
+p {
+  color: #333;
+  font-size: 14px;
   margin: 1rem 0;
-  
+  z-index: 1;
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Animation for fade-in effect */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Button for copy to clipboard */
+button.copy {
+  background-color: #8e44ad;
+  margin-top: 20px;
+}
+
+button.copy:hover {
+  box-shadow: 0px 12px 30px rgba(142, 68, 173, 0.5);
+}
+
+/* Loading State */
+.loading {
+  color: #27ae60;
+  font-size: 1.2rem;
+  margin-top: 20px;
 }
