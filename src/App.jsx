@@ -106,22 +106,18 @@ const App = () => {
       </div>
 
       <div className="controls">
-        {!speaking ? (
-          <button
-            className="speak-btn"
-            onClick={() => {
-              window.speechSynthesis.cancel();
-              setSpeaking(true);
-              setResponseVoiceImg(false);
-              recognition.start();
-            }}
-          >
-            <CiMicrophoneOn className="mic-icon" />
-            Start Speaking
-          </button>
-        ) : (
-          <p className="listening">Listening...</p>
-        )}
+        <button
+          className="speak-btn"
+          onClick={() => {
+            window.speechSynthesis.cancel();
+            setSpeaking(true);
+            setResponseVoiceImg(false);
+            recognition.start();
+          }}
+        >
+          <CiMicrophoneOn className="mic-icon" />
+          Start Speaking
+        </button>
       </div>
 
       <button
